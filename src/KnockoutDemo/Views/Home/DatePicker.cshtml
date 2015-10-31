@@ -1,0 +1,11 @@
+﻿<date-picker params="value: date" />
+
+<script>
+    $(document).ready(function () {
+    	var ViewModel = function() {
+    		this.date = ko.observable('11/11/1960');
+    	};
+
+        ko.applyBindings(new ViewModel());
+    });
+</script>
