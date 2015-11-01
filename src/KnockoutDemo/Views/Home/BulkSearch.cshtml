@@ -1,7 +1,7 @@
 <table class="ui basic table">
-	<thead>
+    <thead>
         <tr>
-        	<th style="width: 200px">Name</th>
+            <th style="width: 200px">Name</th>
             <th>Birthday</th>
         </tr>
     </thead>
@@ -9,7 +9,7 @@
         <tr>
             <td>
                 <div class="ui input">
-                	<input data-bind="textInput: name" />
+                    <input data-bind="textInput: name" />
                 </div>
             </td>
             <td>
@@ -21,20 +21,20 @@
 
 <script>
     var PersonViewModel = function() {
-    	this.name = ko.observable();
+        this.name = ko.observable();
         this.dob = ko.observable();
-    	this.isValid = ko.computed(function() {
-    		return (this.name() || '').trim();
+        this.isValid = ko.computed(function() {
+            return (this.name() || '').trim();
             // return (this.name() || '').trim().length > 4;
-    	}.bind(this));
+        }.bind(this));
     };
 
-	var ListViewModel = function() {
-		this.entries = ko.observableArray([new PersonViewModel()]);
-		this.addNew = function() {
-			return new PersonViewModel();
-		};
-	};
+    var ListViewModel = function() {
+        this.entries = ko.observableArray([new PersonViewModel()]);
+        this.addNew = function() {
+            return new PersonViewModel();
+        };
+    };
 
-	ko.applyBindings(new ListViewModel());
+    ko.applyBindings(new ListViewModel());
 </script>
