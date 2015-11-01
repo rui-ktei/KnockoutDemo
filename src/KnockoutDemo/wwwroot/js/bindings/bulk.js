@@ -8,11 +8,11 @@ ko.bindingHandlers.bulk = {
     var entries = allBindings.get('foreach');
 
     var vm = bindingContext.$data;
-    vm.lastCanAdd = ko.computed(function() {
+    vm._lastCanAdd = ko.computed(function() {
       var lastEntry = entries()[entries().length - 1];
       return ko.unwrap(lastEntry[canAdd]);
     });
-    vm.lastCanAdd.subscribe(function(newValue) {
+    vm._lastCanAdd.subscribe(function(newValue) {
       if (newValue) {
         var newEntry = addNew();
         entries.push(newEntry);
