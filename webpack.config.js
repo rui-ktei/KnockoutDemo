@@ -23,6 +23,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      bindings: path.join(__dirname, 'src/KnockoutDemo/wwwroot/js/bindings'),
       components: path.join(__dirname, 'src/KnockoutDemo/wwwroot/js/components'),
       templates: path.join(__dirname, 'src/KnockoutDemo/wwwroot/templates')
     }

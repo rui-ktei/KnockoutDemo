@@ -16,12 +16,22 @@ namespace KnockoutDemo.Controllers
             return View();
         }
 
+        public IActionResult Browser()
+        {
+            return View();
+        }
+
         public IActionResult HelloWorld()
         {
             return View();
         }
 
         public IActionResult DatePicker()
+        {
+            return View();
+        }
+
+        public IActionResult BulkSearch()
         {
             return View();
         }
