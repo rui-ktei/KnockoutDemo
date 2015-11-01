@@ -1,33 +1,38 @@
-<table>
+<table class="ui basic table">
 	<thead>
         <tr>
-        	<th>Number</th>
-        	<th>Name</th>
+        	<th style="width: 200px">Name</th>
+            <th>Birthday</th>
         </tr>
     </thead>
     <tbody data-bind="foreach: entries, bulk: { canAdd: 'isValid', addNew: addNew }">
         <tr>
             <td>
-            	<input data-bind="textInput: number" />
+                <div class="ui input">
+                	<input data-bind="textInput: name" />
+                </div>
             </td>
-            <td data-bind="text: name"></td>
+            <td>
+                <date-picker params="{ value: dob, defaultDate: '01/01/1985' }" />
+            </td>
         </tr>
     </tbody>
 </table>
 
 <script>
-    var OrganisationViewModel = function() {
-    	this.number = ko.observable();
+    var PersonViewModel = function() {
     	this.name = ko.observable();
+        this.dob = ko.observable();
     	this.isValid = ko.computed(function() {
-    		return (this.number() || '').trim();
+    		return (this.name() || '').trim();
+            // return (this.name() || '').trim().length > 4;
     	}.bind(this));
     };
 
 	var ListViewModel = function() {
-		this.entries = ko.observableArray([new OrganisationViewModel()]);
+		this.entries = ko.observableArray([new PersonViewModel()]);
 		this.addNew = function() {
-			return new OrganisationViewModel();
+			return new PersonViewModel();
 		};
 	};
 
