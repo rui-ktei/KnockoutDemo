@@ -1,3 +1,5 @@
+require('../sass/app.scss');
+
 import 'bindings/browser';
 import 'bindings/bulk';
 

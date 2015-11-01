@@ -1,0 +1,12 @@
+h1 {
+  font-size: 60px;
+}
+.ui {
+  &.main.container {
+    padding-top: 7em;
+  }
+
+  &.inverted.menu {
+    background-color: #1a95b6;
+  }
+}

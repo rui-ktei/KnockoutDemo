@@ -1,3 +1,4 @@
 ko.components.register('hello-world', {
-  template: require('html!templates/hello-world.html')
+  template: '<h1>Hello World</h1>' //require('html!templates/hello-world.html')
 });
+

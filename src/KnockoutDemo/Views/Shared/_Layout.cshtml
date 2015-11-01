@@ -5,15 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=1200" />
     <title>Knockout Demo</title>
-    @*<link href="http://localhost:8080/static/src/InfoTrack.Reveal.Web/Stylesheets/dist/reveal.css" rel="stylesheet" type="text/css" />*@
+    <link href="~/lib/semantic/dist/semantic.css" rel="stylesheet"  type="text/css"/>
     <link href="~/lib/jquery-ui/themes/base/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/dist/app.css" rel="stylesheet" type="text/css" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/semantic/dist/semantic.min.js"></script>
     <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
     <script src="~/lib/knockout/dist/knockout.debug.js"></script>
 </head>
 <body>
     <script src="~/dist/bundle.js"></script>
-
-    @RenderBody()
+    <div class="ui fixed inverted menu">
+        <div class="ui container">
+            <div href="#" class="header item">
+                InfoTrack
+            </div>
+            <a class="item" asp-controller="Home" asp-action="Index">Home</a>
+            <div href="#" class="ui simple dropdown item">
+                Samples <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" asp-controller="Home" asp-action="Browser">Browser</a>
+                    <a class="item" asp-controller="Home" asp-action="HelloWorld">Hello World</a>
+                    <a class="item" asp-controller="Home" asp-action="DatePicker">Date Picker</a>
+                    <a class="item" asp-controller="Home" asp-action="BulkSearch">Bulk Search</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui main container">
+        @RenderBody()
+    </div>
 </body>
 </html>

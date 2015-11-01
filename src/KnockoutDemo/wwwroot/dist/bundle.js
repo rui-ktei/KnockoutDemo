@@ -52,14 +52,16 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	__webpack_require__(2);
-
-	__webpack_require__(8);
-
+	
 	__webpack_require__(3);
-
+	
+	__webpack_require__(4);
+	
 	__webpack_require__(5);
+	
+	__webpack_require__(7);
 
 /***/ },
 /* 2 */
@@ -83,19 +85,42 @@
 
 /***/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 	
-	ko.components.register('hello-world', {
-	  template: __webpack_require__(4)
-	});
+	ko.bindingHandlers.bulk = {
+	  init: function init(element, valueAccessor, allBindings, viewModel, bindingContext) {
+	    var value = valueAccessor();
+	    var bulk = ko.unwrap(value);
+	    var canAdd = bulk.canAdd;
+	    var addNew = bulk.addNew;
+	
+	    var entries = allBindings.get('foreach');
+	
+	    var vm = bindingContext.$data;
+	    vm.lastCanAdd = ko.computed(function () {
+	      var lastEntry = entries()[entries().length - 1];
+	      return ko.unwrap(lastEntry[canAdd]);
+	    });
+	    vm.lastCanAdd.subscribe(function (newValue) {
+	      if (newValue) {
+	        var newEntry = addNew();
+	        entries.push(newEntry);
+	      }
+	    });
+	  }
+	};
 
 /***/ },
 /* 4 */
 /***/ function(module, exports) {
 
-	module.exports = "<h1>Hello World!</h1>\r\n";
+	'use strict';
+	
+	ko.components.register('hello-world', {
+	  template: '<h1>Hello World</h1>' //require('html!templates/hello-world.html')
+	});
 
 /***/ },
 /* 5 */
@@ -128,37 +153,13 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<input data-bind=\"datepicker: value\" />\r\n";
+	module.exports = "<div class=\"ui input\">\r\n  <input data-bind=\"datepicker: value\" placeholder=\"DD/MM/YYYY\" />\r\n</div>\r\n";
 
 /***/ },
-/* 7 */,
-/* 8 */
+/* 7 */
 /***/ function(module, exports) {
 
-	'use strict';
-	
-	ko.bindingHandlers.bulk = {
-	  init: function init(element, valueAccessor, allBindings, viewModel, bindingContext) {
-	    var value = valueAccessor();
-	    var bulk = ko.unwrap(value);
-	    var canAdd = bulk.canAdd;
-	    var addNew = bulk.addNew;
-	
-	    var entries = allBindings.get('foreach');
-	
-	    var vm = bindingContext.$data;
-	    vm.lastCanAdd = ko.computed(function () {
-	      var lastEntry = entries()[entries().length - 1];
-	      return ko.unwrap(lastEntry[canAdd]);
-	    });
-	    vm.lastCanAdd.subscribe(function (newValue) {
-	      if (newValue) {
-	        var newEntry = addNew();
-	        entries.push(newEntry);
-	      }
-	    });
-	  }
-	};
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
