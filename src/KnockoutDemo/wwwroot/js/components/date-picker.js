@@ -5,17 +5,23 @@ ko.bindingHandlers.datepicker = {
     
     var value = valueAccessor();
     // Whether or not the supplied model property is observable, get its current value
-    var date = ko.unwrap(value);
+    var props = ko.unwrap(value);
+    var format = props.format || 'dd/mm/yy';
+    var value = ko.unwrap(props.value);
     // Set initial value
     $(element)
-      .datepicker({ dateFormat: 'dd/mm/yy' })
-      .val(date);
+      .datepicker({ dateFormat: format })
+      .val(value);
   }
 };
 
 ko.components.register('date-picker', {
   viewModel(params) {
-    this.value = params.value;
+    this.props = {
+      value: params.value,
+      format: params.format
+    }
+    this.attr = params.attr;
   },
 
   template: require('html!templates/date-picker.html')
