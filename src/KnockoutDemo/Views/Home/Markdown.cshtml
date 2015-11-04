@@ -1,0 +1,29 @@
+﻿@*http://www.unexpected-vortices.com/sw/rippledoc/quick-markdown-example.html*@
+<div class="ui grid">
+    <div class="eight wide column">
+        <div class="ui form">
+            <div class="field">
+                <label>Markdown</label>
+                <textarea data-bind="textInput: text"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="eight wide column">
+        <div class="ui form">
+            <div class="field">
+                <label>HTML</label>
+                <div data-bind="markdown: text"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var ViewModel = function() {
+            this.text = ko.observable();
+        };
+
+        ko.applyBindings(new ViewModel());
+    });
+</script>

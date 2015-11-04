@@ -21,6 +21,11 @@ namespace KnockoutDemo.Controllers
             return View();
         }
 
+        public IActionResult Markdown()
+        {
+            return View();
+        }
+
         public IActionResult HelloWorld()
         {
             return View();
